@@ -9,7 +9,3 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/xvsvqc/Yakamaru/main/
 ```
 ### Supported Games
 - Criminality
-- Those Who Remain
-- Lumber Tycoon 2
-- Knife Ability Test
-- Jailbreak (Soon)
