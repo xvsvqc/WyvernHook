@@ -9,3 +9,4 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/xvsvqc/wyvernhook.cc/
 ```
 ### Supported Games
 - Criminality
+- Pilot Training Flight Simulator
