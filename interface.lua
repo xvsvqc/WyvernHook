@@ -6,11 +6,11 @@ local RunService = game:GetService('RunService')
 local RenderStepped = RunService.RenderStepped;
 local LocalPlayer = game:GetService('Players').LocalPlayer;
 local Mouse = LocalPlayer:GetMouse();
+local marketplaceService = game:GetService("MarketplaceService")
 
 local ProtectGui = protectgui or (syn and syn.protect_gui) or (function() end);
 
 local ScreenGui = Instance.new('ScreenGui');
-ProtectGui(ScreenGui);
 
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global;
 ScreenGui.Parent = CoreGui;
@@ -2666,17 +2666,9 @@ function Library:CreateWindow(...)
             return Groupbox;
         end;
 
-        function Tab:AddLeftGroupbox(Name)
-            return Tab:AddGroupbox({ Side = 1; Name = Name; });
-        end;
-
-        function Tab:AddRightGroupbox(Name)
-            return Tab:AddGroupbox({ Side = 2; Name = Name; });
-        end;
-
         function Tab:AddThumb(Info)
             local Groupbox = {};
-            local gameInfo = game:GetService("MarketplaceService"):GetProductInfo(Info.Id)
+            local gameInfo = marketplaceService:GetProductInfo(Info.Id)
             local BoxOuter = Library:Create('Frame', {
                 BackgroundColor3 = Library.BackgroundColor;
                 BorderColor3 = Library.OutlineColor;
@@ -2788,7 +2780,15 @@ function Library:CreateWindow(...)
         function Tab:AddGameThumbRight(t)
             return Tab:AddThumb({ Side = 2; Name = t.Name; Id = t.Id; });
         end;
-        
+
+        function Tab:AddLeftGroupbox(Name)
+            return Tab:AddGroupbox({ Side = 1; Name = Name; });
+        end;
+
+        function Tab:AddRightGroupbox(Name)
+            return Tab:AddGroupbox({ Side = 2; Name = Name; });
+        end;
+
         function Tab:AddTabbox(Info)
             local Tabbox = {
                 Tabs = {};
@@ -3046,5 +3046,4 @@ function Library:CreateWindow(...)
 
     return Window;
 end;
-
 return Library
