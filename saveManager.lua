@@ -1,7 +1,7 @@
 local httpService = game:GetService('HttpService')
 
 local SaveManager = {} do
-	SaveManager.Folder = 'WyvernHookSaves'
+	SaveManager.Folder = 'WyvernHook'
 	SaveManager.Ignore = {}
 	SaveManager.Parser = {
 		Toggle = {
