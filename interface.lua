@@ -2742,7 +2742,7 @@ function Library:CreateWindow(...)
                 Size = UDim2.new(1, 0, 0, 18);
                 Position = UDim2.new(0, 0, 1, -26);
                 TextSize = 14;
-                Text = Info.Name or gameInfo.Name;
+                Text = gameInfo.Name;
                 TextXAlignment = Enum.TextXAlignment.Center;
                 ZIndex = 5;
                 BackgroundColor3 = Library.AccentColor,
