@@ -5,11 +5,3 @@ Made With ❤️ By ***[Seppy#1337](https://discord.com/users/996502677607436309
 
 ### Purchase WyvernHook
 https://seppy.sellix.io/product/626d26b27619c
-
-### Loadstring Script
-```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/xvsvqc/WyvernHook/main/Script.lua"))()
-```
-
-### Supported Games
-- Social Experiment
