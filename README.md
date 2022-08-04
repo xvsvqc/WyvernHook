@@ -5,7 +5,7 @@ Made With ❤️ By ***[vqc#0001](https://discord.com/users/957552343266770954)*
 
 ### Loadstring Script
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/xvsvqc/wyvernhook.cc/main/Script.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xvsvqc/WyvernHook/main/Script.lua"))()
 ```
 ### Supported Games
 - Social Experiment
