@@ -7,8 +7,9 @@ local LocalPlayer = game:GetService('Players').LocalPlayer;
 local Mouse = LocalPlayer:GetMouse();
 
 local ScreenGui = Instance.new('ScreenGui');
-ProtectGui(ScreenGui);
-
+if syn.protect_gui then
+    syn.protect_gui(ScreenGui);
+end
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global;
 ScreenGui.Parent = CoreGui;
 
