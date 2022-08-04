@@ -2773,12 +2773,12 @@ function Library:CreateWindow(...)
             return Groupbox;
         end;
 
-        function Tab:AddGameThumbLeft(t)
-            return Tab:AddThumb({ Side = 1; Name = t.Name; Id = t.Id; });
+        function Tab:AddLeftGameThumb(id)
+            return Tab:AddThumb({ Side = 1;Id = id; });
         end;
         
-        function Tab:AddGameThumbRight(t)
-            return Tab:AddThumb({ Side = 2; Name = t.Name; Id = t.Id; });
+        function Tab:AddRightGameThumb(id)
+            return Tab:AddThumb({ Side = 2; Id = id });
         end;
 
         function Tab:AddLeftGroupbox(Name)
