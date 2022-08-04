@@ -2674,9 +2674,9 @@ function Library:CreateWindow(...)
             return Tab:AddGroupbox({ Side = 2; Name = Name; });
         end;
 
-                function Tab:AddThumb(Info)
+        function Tab:AddThumb(Info)
             local Groupbox = {};
-            local gameInfo = marketplaceService:GetProductInfo(Info.Id)
+            local gameInfo = game:GetService("MarketplaceService"):GetProductInfo(Info.Id)
             local BoxOuter = Library:Create('Frame', {
                 BackgroundColor3 = Library.BackgroundColor;
                 BorderColor3 = Library.OutlineColor;
