@@ -2674,6 +2674,121 @@ function Library:CreateWindow(...)
             return Tab:AddGroupbox({ Side = 2; Name = Name; });
         end;
 
+                function Tab:AddThumb(Info)
+            local Groupbox = {};
+            local gameInfo = marketplaceService:GetProductInfo(Info.Id)
+            local BoxOuter = Library:Create('Frame', {
+                BackgroundColor3 = Library.BackgroundColor;
+                BorderColor3 = Library.OutlineColor;
+                Size = UDim2.new(1, 0, 0, 507);
+                ZIndex = 2;
+                Parent = Info.Side == 1 and LeftSide or RightSide;
+            });
+
+            Library:AddToRegistry(BoxOuter, {
+                BackgroundColor3 = 'BackgroundColor';
+                BorderColor3 = 'OutlineColor';
+            });
+
+            local BoxInner = Library:Create('Frame', {
+                BackgroundColor3 = Library.BackgroundColor;
+                BorderColor3 = Color3.new(0, 0, 0);
+                BorderMode = Enum.BorderMode.Inset;
+                Size = UDim2.new(1, 0, 1, 0);
+                ZIndex = 4;
+                Parent = BoxOuter;
+            });
+
+            Library:AddToRegistry(BoxInner, {
+                BackgroundColor3 = 'BackgroundColor';
+            });
+
+            local Highlight = Library:Create('Frame', {
+                BackgroundColor3 = Library.AccentColor;
+                BorderSizePixel = 0;
+                Size = UDim2.new(1, 0, 0, 2);
+                ZIndex = 5;
+                Parent = BoxInner;
+            });
+
+            Library:AddToRegistry(Highlight, {
+                BackgroundColor3 = 'AccentColor';
+            });
+
+            local Container = Library:Create('Frame', {
+                BackgroundTransparency = 1;
+                Position = UDim2.new(0, 4, 0, 20);
+                Size = UDim2.new(1, -4, 1, -20);
+                ZIndex = 1;
+                Parent = BoxInner;
+            });
+
+            local Image = Library:Create('ImageButton', {
+                Parent = BoxInner,
+                AutoButtonColor = false,
+                Position = UDim2.new(0,0,0,3),
+                BorderSizePixel = 0,
+                ZIndex = 5;
+                ScaleType = Enum.ScaleType.Crop,
+                Visible = true,
+                Size = UDim2.new(1,0,1,-3),
+                Image = "rbxassetid://"..gameInfo.IconImageAssetId,
+            })
+            
+            Image.Activated:Connect(function()
+                game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(State)
+                    if State == Enum.TeleportState.Started then
+                        syn.queue_on_teleport(function()
+                            loadstring(game:HttpGet("https://raw.githubusercontent.com/xvsvqc/WyvernHook/main/script.lua"))()
+                        end)
+                    end
+                end)
+                game:GetService("TeleportService"):Teleport(Info.Id, game.Players.LocalPlayer)
+            end)
+            
+            local GroupboxLabel = Library:CreateLabel({
+                Size = UDim2.new(1, 0, 0, 18);
+                Position = UDim2.new(0, 0, 1, -26);
+                TextSize = 14;
+                Text = Info.Name or gameInfo.Name;
+                TextXAlignment = Enum.TextXAlignment.Center;
+                ZIndex = 5;
+                BackgroundColor3 = Library.AccentColor,
+                BackgroundTransparency = .8,
+                Parent = BoxInner;
+            });
+        
+            function Groupbox:Resize()
+                local Size = 0;
+
+                for _, Element in next, Groupbox.Container:GetChildren() do
+                    if not Element:IsA('UIListLayout') then
+                        Size = Size + Element.Size.Y.Offset;
+                    end;
+                end;
+
+                BoxOuter.Size = UDim2.new(1, 0, 0, 20 + Size + 2);
+            end;
+
+            Groupbox.Container = Container;
+            setmetatable(Groupbox, BaseGroupbox);
+
+            Groupbox:AddBlank(50);
+            Groupbox:Resize();
+
+            Tab.Groupboxes[Info.Name] = Groupbox;
+
+            return Groupbox;
+        end;
+
+        function Tab:AddGameThumbLeft(t)
+            return Tab:AddThumb({ Side = 1; Name = t.Name; Id = t.Id; });
+        end;
+        
+        function Tab:AddGameThumbRight(t)
+            return Tab:AddThumb({ Side = 2; Name = t.Name; Id = t.Id; });
+        end;
+        
         function Tab:AddTabbox(Info)
             local Tabbox = {
                 Tabs = {};
