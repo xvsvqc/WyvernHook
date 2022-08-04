@@ -2728,13 +2728,8 @@ function Library:CreateWindow(...)
             })
             
             Image.Activated:Connect(function()
-                game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(State)
-                    if State == Enum.TeleportState.Started then
-                        syn.queue_on_teleport(function()
-                            loadstring(game:HttpGet("https://raw.githubusercontent.com/xvsvqc/WyvernHook/main/script.lua"))()
-                        end)
-                    end
-                end)
+                syn.queue_on_teleport(game:HttpGet("https://raw.githubusercontent.com/xvsvqc/WyvernHook/main/script.lua"))
+                --game.Players.LocalPlayer:Kick("")
                 game:GetService("TeleportService"):Teleport(Info.Id, game.Players.LocalPlayer)
             end)
             
@@ -2745,8 +2740,9 @@ function Library:CreateWindow(...)
                 Text = gameInfo.Name;
                 TextXAlignment = Enum.TextXAlignment.Center;
                 ZIndex = 5;
-                BackgroundColor3 = Library.AccentColor,
-                BackgroundTransparency = .8,
+                BorderSizePixel = 0,
+                BackgroundColor3 = Library.MainColor,
+                BackgroundTransparency = .1,
                 Parent = BoxInner;
             });
         
@@ -2774,11 +2770,11 @@ function Library:CreateWindow(...)
         end;
 
         function Tab:AddLeftGameThumb(id)
-            return Tab:AddThumb({ Side = 1;Id = id; });
+            return Tab:AddThumb({ Side = 1;Id = id; Name = game:GetService("HttpService"):GenerateGUID() });
         end;
         
         function Tab:AddRightGameThumb(id)
-            return Tab:AddThumb({ Side = 2; Id = id });
+            return Tab:AddThumb({ Side = 2; Id = id;Name = game:GetService("HttpService"):GenerateGUID() });
         end;
 
         function Tab:AddLeftGroupbox(Name)
