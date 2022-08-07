@@ -14,6 +14,7 @@ local ScreenGui = Instance.new('ScreenGui');
 
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global;
 ScreenGui.Parent = CoreGui;
+ScreenGui.Name = "WyvernHook";
 
 local Toggles = {};
 local Options = {};
